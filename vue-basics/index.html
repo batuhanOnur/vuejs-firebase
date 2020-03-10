@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .one {
+      color: green;
+    }
+
+    .two {
+      text-decoration: line-through;
+    }
+
+    .canvas {
+      width: 300px;
+      height: 300px;
+      margin-top: 20px;
+      background: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Vue Basics</h1>
+
+  <div id="app">
+    <h2>{{ title }}</h2>
+    <p>{{ greet('morning') }}</p>
+    <a v-bind:href="url">Youtube</a>
+
+    <div v-bind:class="classes"> Classes from instance</div>
+    <input type="text" v-bind:value="name">
+  </div>
+
+
+  <h1> Events </h1>
+
+  <div id="events">
+    <p> I earn {{ wage }} pound per hour</p>
+    <button v-on:click="changeWage(1)">Increase wage by 1 euro.</button>
+    <button v-on:click="changeWage(-1)">Decrease wage by 1 euro.</button>
+    <button v-on:dblclick="changeWage(5)">Increase wage by 5 euro.</button>
+    <button v-on:dblclick="changeWage(-5)">Decrease wage by 5 euro.</button>
+    <br><br>
+    <button @click="logEvent">Log Event info</button>
+    <div class="canvas" @mousemove="logCoords">
+      {{ coords.x }}, {{ coords.y }}
+    </div>
+  </div>
+
+  <h1> Two Way Data Binding</h1>
+
+  <div id="databind">
+    <p>My name is {{ name }}</p>
+    <input type="text" v-model="name">
+  </div>
+
+  <h1> Conditional Output</h1>
+
+  <div id="condition">
+    <p v-if="showName"> mario</p>
+
+    <button v-on:click="toggleName()">Show name</button>
+    <br><br><br><br><br>
+
+    <ul>
+      <li v-for="item in items">{{ item }}</li>
+    </ul>
+  </div>
+
+
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -8,6 +8,11 @@
         <input type="text" name="title" v-model="title" />
       </div>
 
+      <div v-for="(ing,index) in ingredients" :key="index">
+        <label for="ingredient">Ingredients:</label>
+        <input type="text" name="ingredient" v-model="ingredients[index]" />
+      </div>
+
       <div class="field add-ingredient">
         <label for="add-ingredient">Add Ingredient</label>
         <input type="text" name="add-ingredient" @keydown.tab.prevent="addIng" v-model="another" />
@@ -22,6 +27,8 @@
 </template>
 
 <script>
+import db from "@/firebase/init";
+
 export default {
   name: "AddSmoothie",
   data() {
@@ -35,7 +42,16 @@ export default {
 
   methods: {
     AddSmoothie() {
-      console.log(this.title);
+      if (this.title) {
+        this.feedback = null;
+
+        db.collection("smoothies").add({
+          title: this.title,
+          ingredients: this.ingredients
+        });
+      } else {
+        this.feedback = "Please enter title";
+      }
     },
     addIng() {
       if (this.another) {

@@ -11,6 +11,12 @@
         </ul>
       </div>
     </div>
+
+    <div class="data" v-for="(eng,index) in jsondata" :key="index">
+      <h2>{{ eng.word }}</h2>
+      <h2 v-if="anlam">{{ eng.meaning }}</h2>
+      <button @click="datafunc">json data</button>
+    </div>
   </div>
 </template>
 
